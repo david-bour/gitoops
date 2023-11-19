@@ -1,7 +1,9 @@
 FROM python:3.10
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+WORKDIR /app
 
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 COPY . .
-CMD ["python", "app.py"]
+
+CMD [ "uvicorn", "main:app", "--host=0.0.0.0", "--port=8000" ]

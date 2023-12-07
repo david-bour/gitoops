@@ -36,6 +36,8 @@ jobs:
           propertyPath: 'spec.template.spec.containers[0].image'
           value: ${{ github.sha }}
           branch: main
-          createPR: false
+          createPR: true
+          targetBranch: main
+          masterBranchName: main
           message: "Update image to tag ${{ github.sha }}"
           commitChange: true

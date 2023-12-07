@@ -35,7 +35,7 @@ jobs:
           valueFile: 'infrastructure/deployments/environments/dev/deployment.yaml'
           propertyPath: 'spec.template.spec.containers[0].image'
           value: ${{ github.sha }}
-          branch: main
+          branch: deployment/dev
           createPR: true
           targetBranch: main
           masterBranchName: main

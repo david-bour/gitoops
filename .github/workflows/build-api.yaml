@@ -1,7 +1,5 @@
 name: Build Dockerfile
 on: [push]
-paths:
-  - "./api"
 jobs:
   build:
     runs-on: ubuntu-latest

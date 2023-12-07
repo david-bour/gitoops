@@ -1,10 +1,12 @@
 name: Build Dockerfile
 on: [push]
+
 permissions:
   id-token: write
-  contents: read
+  contents: write
   issues: write
   pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,28 +31,28 @@ jobs:
       #     tags: davidbour/authapp:${{ github.sha }},davidbour/authapp:latest
       #     context: ./api
 
-      - name: Update Image Tag in Dev
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: 'infrastructure/deployments/environments/dev/deployment.yaml'
-          propertyPath: 'spec.template.spec.containers[0].image'
-          value: ${{ github.sha }}
-          createPR: false
-          commitChange: false
-
-      - name: Debug
-        run: cat 'deployment.yaml'
-        working-directory: ./infrastructure/deployments/environments/dev
-
       # - name: Update Image Tag in Dev
       #   uses: fjogeleit/yaml-update-action@main
       #   with:
       #     valueFile: 'infrastructure/deployments/environments/dev/deployment.yaml'
       #     propertyPath: 'spec.template.spec.containers[0].image'
-      #     value: ${{ github.sha }}
-      #     branch: deployment/dev
-      #     createPR: true
-      #     targetBranch: main
-      #     masterBranchName: main
-      #     message: "Update image to tag ${{ github.sha }}"
-      #     commitChange: true
+      #     value: 'davidbour/authapp:${{ github.sha }}'
+      #     createPR: false
+      #     commitChange: false
+
+      - name: Update Image Tag in Dev
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'infrastructure/deployments/environments/dev/deployment.yaml'
+          propertyPath: 'spec.template.spec.containers[0].image'
+          value: 'davidbour/authapp:${{ github.sha }}'
+          branch: main
+          createPR: false
+          targetBranch: main
+          masterBranchName: main
+          message: "Update image to tag ${{ github.sha }}"
+          commitChange: true
+
+      - name: Debug
+        run: cat 'deployment.yaml'
+        working-directory: ./infrastructure/deployments/environments/dev

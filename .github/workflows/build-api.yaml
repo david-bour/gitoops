@@ -23,22 +23,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # - name: Build and Push
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     push: true
-      #     platforms: linux/amd64,linux/arm64
-      #     tags: davidbour/authapp:${{ github.sha }},davidbour/authapp:latest
-      #     context: ./api
-
-      # - name: Update Image Tag in Dev
-      #   uses: fjogeleit/yaml-update-action@main
-      #   with:
-      #     valueFile: 'infrastructure/deployments/environments/dev/deployment.yaml'
-      #     propertyPath: 'spec.template.spec.containers[0].image'
-      #     value: 'davidbour/authapp:${{ github.sha }}'
-      #     createPR: false
-      #     commitChange: false
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: davidbour/authapp:${{ github.sha }},davidbour/authapp:latest
+          context: ./api
 
       - name: Update Image Tag in Dev
         uses: fjogeleit/yaml-update-action@main

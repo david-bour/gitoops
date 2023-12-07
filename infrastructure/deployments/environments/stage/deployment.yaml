@@ -17,4 +17,4 @@ spec:
       - image: davidbour/authapp:latest
         name: my-api
         ports:
-        - containerPort: 80
+        - containerPort: 8000

@@ -14,7 +14,7 @@ spec:
         app: my-api
     spec:
       containers:
-      - image: davidbour/authapp:latest
-        name: my-api
-        ports:
-        - containerPort: 8000
+        - image: davidbour/authapp:f940da23e39490fda9fbc268c53adb5f0bbb991f
+          name: my-api
+          ports:
+            - containerPort: 8000

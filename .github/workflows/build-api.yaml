@@ -27,7 +27,7 @@ jobs:
       - name: Update Image Tag in Dev
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: 'deployments/environments/dev/deployment.yaml'
+          valueFile: 'infrastructure/deployments/environments/dev/deployment.yaml'
           propertyPath: 'spec.template.spec.containers[0].image'
           value: ${{ github.sha }}
           branch: main

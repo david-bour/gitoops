@@ -18,6 +18,7 @@ spec:
     spec:
       project: default
       source:
+        chart: backend-charts
         repoURL: https://github.com/david-bour/gitoops.git
         targetRevision: HEAD
         path: infrastructure/deployments/environments/{{namespace}}
